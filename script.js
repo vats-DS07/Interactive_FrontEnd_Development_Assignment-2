@@ -1,7 +1,3 @@
-// =============================================
-//  ASYNC WEATHER TRACKER — script.js
-//  Uses OpenWeatherMap API (sir's starter key)
-// =============================================
 
 const API_KEY   = "ba079b687b1088d073302d089e8ebddd";
 const BASE_URL  = "https://api.openweathermap.org/data/2.5/weather";
