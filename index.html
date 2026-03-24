@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Async Weather Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+
+    <h1>🌤 Async Weather Tracker</h1>
+
+    <div class="parent-card">
+
+      <!-- LEFT: Search + History -->
+      <div style="max-width:360px; min-width:280px;">
+
+        <div class="card" style="margin-bottom:18px;">
+          <h3>🔍 Search City</h3>
+          <div class="input-group">
+            <input id="cityInput" type="text" placeholder="e.g. Delhi, London, Tokyo…" autocomplete="off" />
+          </div>
+          <button id="searchBtn" class="search-btn-full">Search</button>
+          <div class="tips">
+            <span class="tip-label">Try:</span>
+            <button class="tip-chip">London</button>
+            <button class="tip-chip">Tokyo</button>
+            <button class="tip-chip">New York</button>
+            <button class="tip-chip">Mumbai</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📜 Search History</h3>
+          <div class="history" id="historyBox">
+            <span class="no-history">No searches yet.</span>
+          </div>
+          <button id="clearHistBtn" class="clear-btn">✕ Clear History</button>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: Weather -->
+      <div class="card">
+        <h3>🌤 Weather Info</h3>
+        <div id="weatherBox">
+          <div class="empty-msg">🌍<br>Search a city to see weather</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Console -->
+    <div class="card console-card">
+      <div class="console-header">
+        <div class="dots">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <h3>🖥 Console — Event Loop</h3>
+        <button id="clearConsoleBtn" class="clear-console-btn">Clear</button>
+      </div>
+      <div class="console" id="consoleBox"></div>
+    </div>
+
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
