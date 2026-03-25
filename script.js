@@ -2,7 +2,6 @@
 const API_KEY   = "ba079b687b1088d073302d089e8ebddd";
 const BASE_URL  = "https://api.openweathermap.org/data/2.5/weather";
 
-// ─── DOM ELEMENTS ───────────────────────────────────────────
 var cityInput       = document.getElementById("cityInput");
 var searchBtn       = document.getElementById("searchBtn");
 var weatherBox      = document.getElementById("weatherBox");
@@ -11,7 +10,6 @@ var consoleBox      = document.getElementById("consoleBox");
 var clearHistBtn    = document.getElementById("clearHistBtn");
 var clearConsoleBtn = document.getElementById("clearConsoleBtn");
 
-// ─── CONSOLE LOGGER ─────────────────────────────────────────
 function cLog(type, message) {
   var div = document.createElement("div");
   div.className = "log " + type;
@@ -20,7 +18,6 @@ function cLog(type, message) {
   consoleBox.scrollTop = consoleBox.scrollHeight;
 }
 
-// ─── HELPERS ─────────────────────────────────────────────────
 function getEmoji(main) {
   var map = { Clear:"☀️", Clouds:"☁️", Rain:"🌧️", Drizzle:"🌦️",
     Thunderstorm:"⛈️", Snow:"❄️", Mist:"🌫️", Fog:"🌫️", Haze:"🌁" };
@@ -32,7 +29,6 @@ function degToCompass(deg) {
   return ["N","NE","E","SE","S","SW","W","NW"][Math.round(deg / 45) % 8];
 }
 
-// ─── FETCH WEATHER  ───────────────────────────────────────────
 async function getWeather(city) {
   cLog("async", 'fetch() called for <span class="hl">"' + city + '"</span> — pushed to Web API.');
 
@@ -48,7 +44,6 @@ async function getWeather(city) {
   return data;
 }
 
-// ─── RENDER WEATHER ─────────────────────────────────────────
 function renderWeather(d) {
   var emoji     = getEmoji(d.weather[0].main);
   var compass   = degToCompass(d.wind.deg);
@@ -85,7 +80,6 @@ function renderWeather(d) {
   cLog("sync", "DOM updated — weather rendered for <span class='hl'>" + d.name + "</span>.");
 }
 
-// ─── SEARCH HISTORY ──────────────────────────────────────────
 function saveHistory(city) {
   var history = JSON.parse(localStorage.getItem("weatherHistory")) || [];
   history = history.filter(function(c) { return c.toLowerCase() !== city.toLowerCase(); });
@@ -121,7 +115,6 @@ function clearHistory() {
   showHistory();
 }
 
-// ─── MAIN SEARCH ─────────────────────────────────────────────
 async function search(city) {
   cLog("sync", '[CALL STACK] search("' + city + '") — synchronous start.');
   weatherBox.innerHTML = '<div class="loading-text">🔍 Fetching weather for ' + city + '...</div>';
@@ -150,7 +143,6 @@ async function search(city) {
   }
 }
 
-// ─── TIP CHIPS ───────────────────────────────────────────────
 document.querySelectorAll(".tip-chip").forEach(function(chip) {
   chip.addEventListener("click", function() {
     var city = chip.textContent;
@@ -160,7 +152,6 @@ document.querySelectorAll(".tip-chip").forEach(function(chip) {
   });
 });
 
-// ─── EVENT LISTENERS ─────────────────────────────────────────
 searchBtn.addEventListener("click", function() {
   var city = cityInput.value.trim();
   if (city) { cLog("sync", "[EVENT] 'click' on Search button."); search(city); }
@@ -183,7 +174,6 @@ clearConsoleBtn.addEventListener("click", function() {
   cLog("sync", "Console cleared.");
 });
 
-// ─── INIT ────────────────────────────────────────────────────
 cLog("sync", "[INIT] Script loaded — DOM ready.");
 cLog("sync", "[INIT] Event listeners registered.");
 cLog("info", "[INIT] OpenWeatherMap API ready.");
